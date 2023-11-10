@@ -19,17 +19,17 @@ def analyze_pitch_and_compare(file_user, file_original):
 
     # Calcoliamo il pitch per ogni frame e poi prendiamo la media
     pitch_user = []
-    for t in range(pitches_user.shape[1]):  # iterate over time frames
+    for t in range(pitches_user.shape[1]):  # itera tra i frame
         index = magnitudes_user[:, t].argmax()
         pitch = pitches_user[index, t]
         if pitch > 0:  # consider only frames with a pitch
             pitch_user.append(pitch)
     
     pitch_original = []
-    for t in range(pitches_original.shape[1]):  # iterate over time frames
+    for t in range(pitches_original.shape[1]):  # itera tra i frame
         index = magnitudes_original[:, t].argmax()
         pitch = pitches_original[index, t]
-        if pitch > 0:  # consider only frames with a pitch
+        if pitch > 0: # considera solo i frame con un pitch
             pitch_original.append(pitch)
 
     # Calcoliamo la media dei pitch per entrambe le tracce
@@ -41,7 +41,7 @@ def analyze_pitch_and_compare(file_user, file_original):
 
     return pitch_difference
 
-difference = analyze_pitch_and_compare('C:/Users/andre/Downloads/Test Intonazione/cantata.mp3', 'C:/Users/andre/Downloads/Test Intonazione/originale.mp3')
+difference = analyze_pitch_and_compare('path_to_sang_mp3', 'path_to_original_mp3')
 if 0<difference<5:
     print(f'La differenza di {difference} Hz è piccola! Ottima intonazione!')
 elif 5<=difference<=20:
